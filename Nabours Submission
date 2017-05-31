@@ -1,0 +1,38 @@
+using System;
+
+namespace Swag
+{
+  class Lmao
+  {
+    static void Main()
+    {
+      Console.WriteLine("Hoo Hoo! Enter 'encode' or 'decode', ja?");
+      string strInput = Console.ReadLine();
+      if (strInput.ToLower()=="encode") Console.WriteLine(Encode(Console.ReadLine(), "AEIOUYÅÄÖ", ""));
+      else if (strInput.ToLower()=="decode") Console.WriteLine(Decode(Console.ReadLine(), "AEIOUYÅÄÖ", ""));
+      else Main();
+    }
+    static string Encode(string strRovar, string strCheckEm, string strOutput)
+    {
+      foreach (char charNext in strRovar)
+      {
+        if (strCheckEm.Contains(charNext.ToString().ToUpper()) | charNext.ToString().ToLower() == charNext.ToString().ToUpper()) strOutput+=charNext;
+        else strOutput+=charNext + "o" + charNext.ToString().ToLower();
+      }
+      return strOutput;
+    }
+    static string Decode(string strSpraket, string strCheckEm, string strOutput)
+    {
+      int intCounter = 0;
+      do
+      {
+        strOutput+=strSpraket[intCounter];
+        if (strCheckEm.Contains(strSpraket[intCounter].ToString().ToUpper()) | strSpraket[intCounter].ToString().ToLower() == strSpraket[intCounter].ToString().ToUpper()) intCounter++;
+        else intCounter+=3;
+        
+      }
+      while (intCounter<strSpraket.Length);
+      return strOutput;
+    }
+  }
+}
